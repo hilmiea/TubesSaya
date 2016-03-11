@@ -9,21 +9,20 @@ package javaapplication7;
  *
  * @author daraswatizakiah
  */
-public class Dosen extends Orang  {
+public class Dosen extends Orang{
     private String nip;
-    
-    public Dosen(String nama,String kelamin, String nip){
-        super(nama);
-        super(kelamin);
+
+    public Dosen(String nama, String kelamin, String nip){
+        super(nama,kelamin);
         this.nip=nip;
     }
     public String getNama(){
-        return super.nama;
+        return super.getNama();
     }
     public String getNip(){
         return nip;
     }
     public String getKelamin(){
-        return super.kelamin;
+        return super.getKelamin();
     }
 }
