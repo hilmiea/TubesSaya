@@ -1,0 +1,29 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package javaapplication7;
+
+/**
+ *
+ * @author daraswatizakiah
+ */
+public class Dosen extends Orang  {
+    private String nip;
+    
+    public Dosen(String nama,String kelamin, String nip){
+        super(nama);
+        super(kelamin);
+        this.nip=nip;
+    }
+    public String getNama(){
+        return super.nama;
+    }
+    public String getNip(){
+        return nip;
+    }
+    public String getKelamin(){
+        return super.kelamin;
+    }
+}
