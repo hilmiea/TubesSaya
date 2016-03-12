@@ -25,5 +25,5 @@ public abstract class Orang {
     public String getKelamin(){
         return kelamin;
     }
-    
+ 
 }
