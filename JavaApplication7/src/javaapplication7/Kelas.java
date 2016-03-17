@@ -10,26 +10,35 @@ package javaapplication7;
  * @author Hilmi EA
  */
 public class Kelas{
- 	private Matakuliah matakuliah;
- 	private Dosen dosen;
+ 	private Matakuliah[] matakuliah;
+ 	private Dosen[] dosen;
  	private String namakelas;
+        private int banyak = 0;
  	
- 	public Kelas(String namakelas) {
+        public Kelas(String namakelas) {
  		this.namakelas=namakelas;
+                matakuliah = new Matakuliah[40];
+                dosen = new Dosen[40];
  	}
  	
  	public void setDosenMatkul(Dosen dosen, Matakuliah matakuliah) {
                 //Perubahan dari ketua
- 		this.dosen= dosen;
- 		this.matakuliah = matakuliah;
+                if(banyak <= 40) {
+                    this.matakuliah[banyak] = matakuliah;
+                    this.dosen[banyak] = dosen;
+                    banyak++;
+                }
+                else{
+                    System.out.println("Matkul Penuh");
+                }
  	}
  	
- 	public Dosen getDosen() {
- 		return dosen;
+ 	public Dosen getDosen(int i) {
+ 		return dosen[i];
  	}
  	
- 	public Matakuliah getMatakuliah() {
- 		return matakuliah;
+ 	public Matakuliah getMatakuliah(int i) {
+ 		return matakuliah[i];
  	}
  	
  	public String getNamaKelas(){
