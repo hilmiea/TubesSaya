@@ -11,18 +11,21 @@ package javaapplication7;
  */
 public class Mahasiswa extends Orang{
  	private Kelas[] pilihan;
+        private Matakuliah[] matkul;
  	private int banyakkelas = 0;
  	
  	public Mahasiswa(String nama, String kelamin){
- 		super(nama,kelamin);
+ 		//Perubahan dari ketua
+                super(nama,kelamin);
                 pilihan = new Kelas[40];
-                //Perubahan dari ketua
+                matkul = new Matakuliah[40];
  	}
  
-     public void tambahKelas(Kelas k){
-         	if(banyakkelas<40) {
- 			pilihan[banyakkelas]=k;
+     public void tambahKelas(Kelas k,Matakuliah m){
+         	if(banyakkelas <= 40) {
                         //Perubahan dari ketua
+ 			pilihan[banyakkelas]=k;
+                        matkul[banyakkelas] = m;
  			banyakkelas++;
                 } 
                 else {
@@ -33,9 +36,10 @@ public class Mahasiswa extends Orang{
  	public Kelas getKelas(int id) {
  		return pilihan[id];
  	}
- 	
-	public String getName(int id) {
-                //Perubahan dari ketua
- 		return super.getNama();
+        
+        public Matakuliah getMatkul(int id) {
+ 		return matkul[id];
  	}
+        
+       
 }
