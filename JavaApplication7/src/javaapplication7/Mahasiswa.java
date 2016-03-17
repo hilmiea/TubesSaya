@@ -33,9 +33,9 @@ public class Mahasiswa extends Orang{
  		}
  	}
      
-     public void removeKelas(int id){
-         pilihan[id] = null;
-     }
+        public void removeKelas(int id){
+             pilihan[id] = null;
+        }
  	
  	public Kelas getKelas(int id) {
  		return pilihan[id];
@@ -45,5 +45,8 @@ public class Mahasiswa extends Orang{
  		return matkul[id];
  	}
         
+        public String getNama(){
+            return super.getNama();
+        }
        
 }
