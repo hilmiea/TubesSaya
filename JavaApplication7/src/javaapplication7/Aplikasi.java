@@ -68,7 +68,8 @@ public class Aplikasi {
         System.out.println("2. Edit Dosen");
         System.out.println("3. Hapus Dosen");
         System.out.println("4. Lihat Dosen");
-        System.out.println("5. Keluar");
+        System.out.println("5. Cari Dosen");
+        System.out.println("6. Keluar");
         System.out.println("------------------------------");
     }
     
@@ -79,7 +80,8 @@ public class Aplikasi {
         System.out.println("2. Edit Mahasiswa");
         System.out.println("3. Hapus Mahasiswa");
         System.out.println("4. Lihat Mahasiswa");
-        System.out.println("5. Keluar");
+        System.out.println("5. Cari Mahasiswa");
+        System.out.println("6. Keluar");
         System.out.println("------------------------------");
     }
     
@@ -90,7 +92,8 @@ public class Aplikasi {
         System.out.println("2. Edit Mata Kuliah");
         System.out.println("3. Hapus Mata Kuliah");
         System.out.println("4. Lihat Mata Kuliah");
-        System.out.println("5. Keluar");
+        System.out.println("5. Cari Mata Kuliah");
+        System.out.println("6. Keluar");
         System.out.println("------------------------------");
     }
     
@@ -101,8 +104,9 @@ public class Aplikasi {
         System.out.println("2. Edit Kelas");
         System.out.println("3. Hapus Kelas");
         System.out.println("4. Lihat Kelas");
-        System.out.println("5. Set Dosen + Matkul Kelas");
-        System.out.println("6. Keluar");
+        System.out.println("5. Cari Kelas");
+        System.out.println("6. Set Dosen + Matkul Kelas");
+        System.out.println("7. Keluar");
         System.out.println("------------------------------");
     }
     
