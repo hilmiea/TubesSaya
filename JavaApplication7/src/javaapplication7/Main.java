@@ -60,8 +60,8 @@ public class Main{
                 mhs1.tambahKelas(k1,m1);
                 mhs1.tambahKelas(k2,m2);
                 mhs2.tambahKelas(k1,m3);
-                                
                 
+                              
                 System.out.println("Nama : "+mhs1.getNama());
                 for(int i=0;i<=3;i++){
                     if (mhs1.getKelas(i) != null){
