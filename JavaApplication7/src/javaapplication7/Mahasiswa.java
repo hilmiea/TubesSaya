@@ -32,6 +32,10 @@ public class Mahasiswa extends Orang{
  			System.out.println("Kelas Penuh!!");
  		}
  	}
+     
+     public void removeKelas(int id){
+         pilihan[id] = null;
+     }
  	
  	public Kelas getKelas(int id) {
  		return pilihan[id];
