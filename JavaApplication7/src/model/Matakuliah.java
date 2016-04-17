@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javaapplication7;
+package model;
 
 /**
  *
@@ -11,18 +11,12 @@ package javaapplication7;
  */
 public class Matakuliah {
     private String namamatkul;
-    private Dosen[] dosen = new Dosen[50];
     private int sks;
     private int banyak = 0;
     
     public Matakuliah(String namamatkul, int sks){
         this.namamatkul=namamatkul;
         this.sks=sks;
-    }
-    
-    public void setDosen(Dosen dosen){
-        this.dosen[banyak] = dosen;
-        banyak++;
     }
     
     public void setNamaMatkul(String namamatkul){
@@ -37,4 +31,6 @@ public class Matakuliah {
     public int getSks(){
         return sks;
     }
+    
+    
 }

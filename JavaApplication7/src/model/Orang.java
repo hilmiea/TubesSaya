@@ -1,4 +1,4 @@
-package javaapplication7;
+package model;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -25,5 +25,15 @@ public abstract class Orang {
     public String getKelamin(){
         return kelamin;
     }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public void setKelamin(String kelamin) {
+        this.kelamin = kelamin;
+    }
+    
+    
  
 }
