@@ -6,8 +6,10 @@
 package view;
 
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -22,6 +24,7 @@ public class ViewKelolaDosen extends javax.swing.JFrame {
      */
     public ViewKelolaDosen() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -65,7 +68,6 @@ public class ViewKelolaDosen extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
         editnama = new javax.swing.JTextField();
         editnip2 = new javax.swing.JTextField();
         editnip = new javax.swing.JTextField();
@@ -73,6 +75,7 @@ public class ViewKelolaDosen extends javax.swing.JFrame {
         editsimpan = new javax.swing.JButton();
         editbatal = new javax.swing.JButton();
         editcari = new javax.swing.JButton();
+        jLabel19 = new javax.swing.JLabel();
         keluarkeloladosen = new javax.swing.JButton();
         lihatdatadosen = new javax.swing.JButton();
 
@@ -93,24 +96,50 @@ public class ViewKelolaDosen extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Kelola Dosen");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setText("PENGELOLAAN DOSEN");
 
+        jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("NIP");
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Nama");
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Jenis Kelamin");
 
+        tambahnip.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        tambahnip.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tambahnipKeyTyped(evt);
+            }
+        });
+
+        tambahnama.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        tambahnama.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tambahnamaKeyTyped(evt);
+            }
+        });
+
+        tambahjk.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         tambahjk.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laki - Laki", "Perempuan" }));
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText(":");
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText(":");
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText(":");
 
+        tambahsimpan.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         tambahsimpan.setText("Simpan");
 
+        tambahbatal.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         tambahbatal.setText("Batal");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -118,70 +147,84 @@ public class ViewKelolaDosen extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(46, 46, 46)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(tambahnip, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(tambahnama, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addContainerGap()
+                        .addComponent(jLabel4)))
+                .addGap(24, 24, 24)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tambahnama, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                            .addComponent(tambahnip)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tambahjk, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(tambahsimpan)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tambahbatal))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(tambahjk, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(3, 3, 3)))))
-                .addContainerGap(114, Short.MAX_VALUE))
+                                .addComponent(tambahbatal)))))
+                .addGap(197, 197, 197))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(tambahnip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(tambahnip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(4, 4, 4)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6)
+                        .addComponent(tambahnama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(13, 13, 13)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tambahnama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
                     .addComponent(tambahjk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tambahsimpan)
                     .addComponent(tambahbatal))
-                .addContainerGap(127, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Tambah Dosen", jPanel2);
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setText("NIP");
 
+        hapushapus.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         hapushapus.setText("Hapus");
 
+        hapusnip.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        hapusnip.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                hapusnipKeyTyped(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setText(":");
 
+        hapusbatal.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         hapusbatal.setText("Batal");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -200,7 +243,7 @@ public class ViewKelolaDosen extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(hapusbatal))
                     .addComponent(hapusnip))
-                .addContainerGap(164, Short.MAX_VALUE))
+                .addContainerGap(287, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,59 +257,95 @@ public class ViewKelolaDosen extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(hapushapus)
                     .addComponent(hapusbatal))
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addContainerGap(226, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Hapus Dosen", jPanel3);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setText("NIP");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
 
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel11.setText(":");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 20, 12, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 12, -1));
 
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel12.setText("NIP");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
 
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel13.setText("Nama");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel14.setText("Jenis Kelamin");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
 
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel15.setText("Edit Menjadi");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel16.setText(":");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 12, -1));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 12, -1));
 
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel17.setText(":");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 12, -1));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 12, -1));
 
-        jLabel18.setText(":");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 12, -1));
-        jPanel1.add(editnama, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 130, -1));
-        jPanel1.add(editnip2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 130, -1));
-        jPanel1.add(editnip, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 17, 108, -1));
+        editnama.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        editnama.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                editnamaKeyTyped(evt);
+            }
+        });
+        jPanel1.add(editnama, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 160, -1));
 
+        editnip2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        editnip2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                editnip2KeyTyped(evt);
+            }
+        });
+        jPanel1.add(editnip2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 160, -1));
+
+        editnip.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        editnip.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                editnipKeyTyped(evt);
+            }
+        });
+        jPanel1.add(editnip, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 160, -1));
+
+        editjk.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         editjk.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laki - Laki", "Perempuan" }));
-        jPanel1.add(editjk, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 130, -1));
+        jPanel1.add(editjk, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 160, -1));
 
+        editsimpan.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         editsimpan.setText("Simpan");
-        jPanel1.add(editsimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 179, -1, -1));
+        jPanel1.add(editsimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, -1, -1));
 
+        editbatal.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         editbatal.setText("Batal");
-        jPanel1.add(editbatal, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 179, -1, -1));
+        jPanel1.add(editbatal, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 70, -1));
 
+        editcari.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         editcari.setText("Cari");
-        jPanel1.add(editcari, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, -1, -1));
+        jPanel1.add(editcari, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, -1, -1));
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel19.setText(":");
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 12, -1));
 
         jTabbedPane1.addTab("Edit Dosen", jPanel1);
 
-        keluarkeloladosen.setText("Keluar");
+        keluarkeloladosen.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        keluarkeloladosen.setText("Kembali");
 
+        lihatdatadosen.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lihatdatadosen.setText("Lihat Data Dosen");
         lihatdatadosen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -278,17 +357,15 @@ public class ViewKelolaDosen extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTabbedPane1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(keluarkeloladosen))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(lihatdatadosen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lihatdatadosen, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -299,7 +376,7 @@ public class ViewKelolaDosen extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(keluarkeloladosen))
                 .addGap(26, 26, 26)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lihatdatadosen)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -312,9 +389,59 @@ public class ViewKelolaDosen extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lihatdatadosenActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void tambahnipKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tambahnipKeyTyped
+        char karakter = evt.getKeyChar();  
+        if(!(((karakter >= '0') && (karakter <= '9') || (karakter == KeyEvent.VK_BACK_SPACE) || (karakter == KeyEvent.VK_DELETE)))){  
+            getToolkit().beep();  
+            JOptionPane.showMessageDialog(this, "Hanya menerima inputan huruf");
+            evt.consume();  
+        }  
+    }//GEN-LAST:event_tambahnipKeyTyped
+
+    private void hapusnipKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hapusnipKeyTyped
+        char karakter = evt.getKeyChar();  
+        if(!(((karakter >= '0') && (karakter <= '9') || (karakter == KeyEvent.VK_BACK_SPACE) || (karakter == KeyEvent.VK_DELETE)))){  
+            getToolkit().beep();
+            JOptionPane.showMessageDialog(this, "Hanya menerima inputan huruf");
+            evt.consume();
+        }
+    }//GEN-LAST:event_hapusnipKeyTyped
+
+    private void editnipKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editnipKeyTyped
+        char karakter = evt.getKeyChar();  
+        if(!(((karakter >= '0') && (karakter <= '9') || (karakter == KeyEvent.VK_BACK_SPACE) || (karakter == KeyEvent.VK_DELETE)))){  
+            getToolkit().beep();  
+            JOptionPane.showMessageDialog(this, "Hanya menerima inputan huruf");
+            evt.consume();  
+        }
+    }//GEN-LAST:event_editnipKeyTyped
+
+    private void editnip2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editnip2KeyTyped
+        char karakter = evt.getKeyChar();  
+        if(!(((karakter >= '0') && (karakter <= '9') || (karakter == KeyEvent.VK_BACK_SPACE) || (karakter == KeyEvent.VK_DELETE)))){  
+            getToolkit().beep();  
+            JOptionPane.showMessageDialog(this, "Hanya menerima inputan huruf");
+            evt.consume();  
+        }
+    }//GEN-LAST:event_editnip2KeyTyped
+
+    private void tambahnamaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tambahnamaKeyTyped
+        char karakter = evt.getKeyChar();  
+            if(!(((karakter >= 'a') && (karakter <= 'z') || (karakter == KeyEvent.VK_BACK_SPACE) || (karakter == KeyEvent.VK_DELETE)))){  
+            getToolkit().beep();  
+            JOptionPane.showMessageDialog(this, "Hanya menerima inputan huruf");
+            evt.consume(); 
+}
+    }//GEN-LAST:event_tambahnamaKeyTyped
+
+    private void editnamaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editnamaKeyTyped
+            char karakter = evt.getKeyChar();  
+            if(!(((karakter >= 'a') && (karakter <= 'z') || (karakter == KeyEvent.VK_BACK_SPACE) || (karakter == KeyEvent.VK_DELETE)))){  
+            getToolkit().beep();  
+            JOptionPane.showMessageDialog(this, "Hanya menerima inputan huruf");
+            evt.consume();  
+        }
+    }//GEN-LAST:event_editnamaKeyTyped
 
     public JButton getBatal() {
         return tambahbatal;
@@ -495,7 +622,7 @@ public class ViewKelolaDosen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

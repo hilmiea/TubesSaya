@@ -5,6 +5,7 @@
  */
 package controller;
 
+import database.Database;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -20,29 +21,54 @@ public class ControllerViewKelolaMahasiswa implements ActionListener{
     private Aplikasi model;
     private ViewKelolaMahasiswa view;
     private Mahasiswa m;
+    Database connection;
     
     public ControllerViewKelolaMahasiswa(Aplikasi model) {
         this.model = model;
         view = new ViewKelolaMahasiswa();
         view.addActionListener(this);
         view.setVisible(true);
+        connection = new Database();
+        connection.connect();
+        model.setDaftarMahasiswa(connection.loadAllMahasiswa());
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
         Object o = ae.getSource();
         if(o.equals(view.getTambahsimpan())){
-            m = new Mahasiswa(view.getTambahnim().getText(),view.getTambahnama().getText(),view.getTambahjk().getSelectedItem().toString());
-            model.tambahMahasiswa(m);
-            view.getTambahnim().setText("");
-            view.getTambahnama().setText("");
-            view.getTambahjk().setSelectedIndex(0);
-            JOptionPane.showMessageDialog(view, "Mahasiswa berhasil di simpan");
+            if (view.getTambahnim().getText().equals("")){
+                JOptionPane.showMessageDialog(view, "Ada data kosong");
+            }
+            else if (view.getTambahnama().getText().equals("")){
+                JOptionPane.showMessageDialog(view, "Ada data kosong");
+            }  
+            else{
+            m = model.getMahasiswa(Integer.parseInt(view.getTambahnim().getText()));
+            if(m == null){
+                m = new Mahasiswa(Integer.parseInt(view.getTambahnim().getText()),view.getTambahnama().getText(),view.getTambahjk().getSelectedItem().toString());
+                model.tambahMahasiswa(m);
+                view.getTambahnim().setText("");
+                view.getTambahnama().setText("");
+                view.getTambahjk().setSelectedIndex(0);
+                JOptionPane.showMessageDialog(view, "Mahasiswa berhasil di simpan");
+            }
+            else{
+                view.getTambahnim().setText("");
+                view.getTambahnama().setText("");
+                view.getTambahjk().setSelectedIndex(0);
+                JOptionPane.showMessageDialog(view, "Mahasiswa sudah ada");
+            }
+            }
         }
         else if(o.equals(view.getEditcari())){
-            m = model.getMahasiswa(view.getEditnim().getText());
+            if (view.getEditnim().getText().equals("")){
+                JOptionPane.showMessageDialog(view, "Ada data kosong");
+            }
+            else{
+            m = model.getMahasiswa(Integer.parseInt(view.getEditnim().getText()));
             if(m != null){
-                view.getEditnimbaru().setText(m.getNim());
+                view.getEditnimbaru().setText(Integer.toString(m.getNim()));
                 view.getEditnamabaru().setText(m.getNama());
                 if(view.getEditjk().getSelectedItem() == "Laki - Laki"){
                     view.getEditjk().setSelectedIndex(0);
@@ -59,18 +85,33 @@ public class ControllerViewKelolaMahasiswa implements ActionListener{
                 view.getEditjk().setSelectedIndex(0);
                 JOptionPane.showMessageDialog(view, "NIM tidak terdeteksi");
             }
+            }
         }
         else if(o.equals(view.getEditsimpan())){
-            m = model.getMahasiswa(view.getEditnim().getText());
+            if (view.getEditnim().getText().equals("")){
+                JOptionPane.showMessageDialog(view, "Ada data kosong");
+            }
+            else if (view.getEditnama().getText().equals("")){
+                JOptionPane.showMessageDialog(view, "Ada data kosong");
+            }
+            else if (view.getEditnamabaru().getText().equals("")){
+                JOptionPane.showMessageDialog(view, "Ada data kosong");
+            }
+            else if (view.getEditnimbaru().getText().equals("")){
+                JOptionPane.showMessageDialog(view, "Ada data kosong");
+            }        
+            else{
+            m = model.getMahasiswa(Integer.parseInt(view.getEditnim().getText()));
             if(m != null){
-                m.setNim(view.getEditnimbaru().getText());
+                m.setNim(Integer.parseInt(view.getEditnimbaru().getText()));
                 m.setNama(view.getEditnamabaru().getText());
-                m.setKelamin(view.getEditjk().getSelectedItem().toString());
+                m.setKelamin(view.getEditjk().getSelectedItem().toString());              
+                model.editMatahasiswaDatabase(m, Integer.parseInt(view.getEditnim().getText()));     
+                model.editMahasiswa(m);
                 view.getEditnim().setText("");
                 view.getEditnimbaru().setText("");
                 view.getEditnamabaru().setText("");
                 view.getEditjk().setSelectedIndex(0);
-                model.editMahasiswa(m);
                 JOptionPane.showMessageDialog(view, "Edit mahasiswa berhasil");
             }
             else{
@@ -81,10 +122,16 @@ public class ControllerViewKelolaMahasiswa implements ActionListener{
                 JOptionPane.showMessageDialog(view, "Mahasiswa belum terdaftar");
             }
         }
+        }
         else if(o.equals(view.getHapushapus())){
-            m = model.getMahasiswa(view.getHapusnim().getText());
+            if (view.getHapusnim().getText().equals("")){
+                JOptionPane.showMessageDialog(view, "Ada data kosong");
+            }
+            else{ 
+            m = model.getMahasiswa(Integer.parseInt(view.getHapusnim().getText()));
             if(m != null){
                 model.hapusMahasiswa(m);
+                model.hapusDatabaseMahasiswa(m);
                 view.getHapusnim().setText("");
                 JOptionPane.showMessageDialog(view, "Mahasiswa berhasil dihapus");
             }
@@ -92,6 +139,7 @@ public class ControllerViewKelolaMahasiswa implements ActionListener{
                 view.getHapusnim().setText("");
                 JOptionPane.showMessageDialog(view, "Mahasiswa tidak terdeteksi");
             }
+        }
         }
         else if(o.equals(view.getTambahbatal())){
             view.getTambahnim().setText("");

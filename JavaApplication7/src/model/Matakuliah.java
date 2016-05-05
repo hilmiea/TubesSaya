@@ -11,12 +11,25 @@ package model;
  */
 public class Matakuliah {
     private String namamatkul;
+    private String kodematkul;
     private int sks;
-    private int banyak = 0;
+
+    public String getKodematkul() {
+        return kodematkul;
+    }
+
+    public void setKodematkul(String codematkul) {
+        this.kodematkul = codematkul;
+    }
+
+    public Matakuliah() {
+    }
     
-    public Matakuliah(String namamatkul, int sks){
+    
+    public Matakuliah(String namamatkul, int sks,String kodematkul){
         this.namamatkul=namamatkul;
         this.sks=sks;
+        this.kodematkul = kodematkul;
     }
     
     public void setNamaMatkul(String namamatkul){

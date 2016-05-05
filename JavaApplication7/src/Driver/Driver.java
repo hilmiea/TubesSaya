@@ -15,6 +15,7 @@ public class Driver {
     public static void main(String[] args) {
         Aplikasi model = new Aplikasi();
         new ControllerViewLogin(model);
+        
     }
     
 }

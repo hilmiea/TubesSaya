@@ -5,6 +5,7 @@
  */
 package model;
 
+import database.Database;
 import java.util.ArrayList;
 
 /**
@@ -15,10 +16,70 @@ public class Aplikasi {
     private ArrayList<Dosen> daftarDosen = new ArrayList<>();
     private ArrayList<Kelas> daftarKelas = new ArrayList<>();
     private ArrayList<Mahasiswa> daftarMahasiswa = new ArrayList<>();
+    private ArrayList<RegistrasiMahasiswa> daftarNgambilMatkul = new ArrayList<>();
     private ArrayList<Matakuliah> daftarMatakuliah = new ArrayList<>();
     private ArrayList<Kelas> daftarKelasMatkulDosen = new ArrayList<>();
     private ArrayList<Kelas> daftarMatkulMahasiswa = new ArrayList<>();
+    private Database connection = new Database();
+    private int a;
+    private int b;
 
+    public int getB() {
+        return b;
+    }
+
+    public void setB(int b) {
+        this.b = b;
+    }
+    
+    
+
+    public Kelas getDKMD(String id){
+        for(Kelas k : daftarKelasMatkulDosen){
+            if(k.getNamaKelas().equals(id)){
+                return k;
+            }
+        }
+        Kelas k = null;
+        return k;
+    }
+    
+    public void hapusDaftarNgambilMatkul(RegistrasiMahasiswa rm){
+        daftarNgambilMatkul.remove(rm);
+        connection.deleteMatkulMahasiswa(rm);
+    }
+    
+    public ArrayList<RegistrasiMahasiswa> getDaftarNgambilMatkul() {
+        return daftarNgambilMatkul;
+    }
+
+    public void setDaftarNgambilMatkul(ArrayList<RegistrasiMahasiswa> daftarNgambilMatkul) {
+        this.daftarNgambilMatkul = daftarNgambilMatkul;
+    }
+    
+
+    public int getA() {
+        return a;
+    }
+
+    public void setA(int a) {
+        this.a = a;
+    }
+    
+    
+    public Aplikasi() {
+        connection = new Database();
+        connection.connect();
+    }
+    
+    public void tambahNgambilMatkul(RegistrasiMahasiswa m){
+        daftarNgambilMatkul.add(m);
+    }
+    
+    public void hapusNgambilMatkul(RegistrasiMahasiswa m){
+        daftarNgambilMatkul.remove(m);
+    }
+    
     public ArrayList<Kelas> getDaftarMatkulMahasiswa() {
         return daftarMatkulMahasiswa;
     }
@@ -37,26 +98,36 @@ public class Aplikasi {
     
     public void tambahDosen(Dosen d){
         daftarDosen.add(d);
+        connection.insert_dosen(d);
     }
     
     public void tambahKelas(Kelas k){
         daftarKelas.add(k);
+        connection.insert_kelas(k);
     }
     
     public void tambahMahasiswa(Mahasiswa m){
         daftarMahasiswa.add(m);
+        connection.insert_mahasiswa(m);
     }
+
     
     public void tambahMatakuliah(Matakuliah mk){
         daftarMatakuliah.add(mk);
+        connection.insert_matakuliah(mk);
     }
     
     public void tambahKelasMatkulDosen(Kelas k){
         daftarKelasMatkulDosen.add(k);
+        connection.insert_setkelas(k);
     }
     
     public void hapusKelasMatkulDosen(Kelas k){
         daftarKelasMatkulDosen.remove(k);
+    }
+    
+    public void hapusMahasiswaMatkulKelas(Kelas k){
+        daftarMatkulMahasiswa.remove(k);
     }
 
     public ArrayList<Kelas> getDaftarKelasMatkulDosen() {
@@ -87,9 +158,29 @@ public class Aplikasi {
         return k;
     }
     
-    public Kelas getDosenMatkulMahasiswa(String id){
+    public RegistrasiMahasiswa getRegistrasiMahasiswa(int nim){
+        for (RegistrasiMahasiswa rm : daftarNgambilMatkul){
+            if(rm.getMahasiswa().getNim() == nim){
+                return rm;
+            }
+        }
+        RegistrasiMahasiswa rm = null;
+        return rm;
+    }
+    
+    public RegistrasiMahasiswa getRegistrasiMahasiswa(String id){
+        for (RegistrasiMahasiswa rm : daftarNgambilMatkul){
+            if(rm.getKelas().getNamaKelas().equals(id)){
+                return rm;
+            }
+        }
+        RegistrasiMahasiswa rm = null;
+        return rm;
+    }
+    
+    public Kelas getDosenMatkulMahasiswa(int id){
         for (Kelas k : daftarMatkulMahasiswa){
-            if(k.getDosen().getNip().equals(id)){
+            if(k.getDosen().getNip() == id){
                 return k;
             }
         }
@@ -117,9 +208,9 @@ public class Aplikasi {
         return k;
     }
     
-    public Kelas getDaftarSetDosen(String id){
+    public Kelas getDaftarSetDosen(int  id){
         for (Kelas k : daftarKelasMatkulDosen){
-            if(k.getDosen().getNip().equals(id)){
+            if(k.getDosen().getNip() == id){
                 return k;
             }
         }
@@ -127,9 +218,9 @@ public class Aplikasi {
         return k;
     }
     
-    public Dosen getDosen(String id){
+    public Dosen getDosen(int id){
         for(Dosen d : daftarDosen){
-            if(d.getNip().equals(id)){
+            if(d.getNip() == id){
                 return d;
             }
         }
@@ -168,9 +259,9 @@ public class Aplikasi {
         daftarDosen.remove(d);
     }
     
-    public Mahasiswa getMahasiswa(String nim){
+    public Mahasiswa getMahasiswa(int nim){
         for(Mahasiswa m : daftarMahasiswa){
-            if(m.getNim().equals(nim)){
+            if(m.getNim() == nim){
                 return m;
             }
         }
@@ -198,8 +289,8 @@ public class Aplikasi {
     
     public Matakuliah getMatakuliah(String nama){
         for(Matakuliah mk : daftarMatakuliah){
-            if(mk.getNamaMatkul().equals(nama)){
-                return mk;
+            if(mk.getKodematkul().equals(nama)){
+               return mk;
             }
         }
         Matakuliah mk = null;
@@ -218,6 +309,22 @@ public class Aplikasi {
             }
         }
     }  
+    
+    public void editDosenDatabase(Dosen d,int a){
+        connection.update_dosen(d, a);
+    }
+    
+    public void editMatakuliahDatabase(Matakuliah mk,String a){
+        connection.update_matakuliah(mk, a);
+    }
+    
+    public void editMatahasiswaDatabase(Mahasiswa m, int a){
+        connection.update_mahasiswa(m, a);
+    }
+    
+    public void editKelasDatabase(Kelas k){
+        connection.update_khususkelas(k);
+    }
     
     public void editKelas(Kelas k){
         for(Kelas kel : daftarKelas){
@@ -278,5 +385,31 @@ public class Aplikasi {
         this.daftarMatakuliah = daftarMatakuliah;
     }
     
+    /*public ArrayList<Dosen> getDaftarDosenDatabase() {
+        return connection.getAllDosen();
+    }*/
     
+    public void hapusDatabaseDosen(Dosen d){
+        connection.deleteDosen(d);
+    }
+    
+    public void hapusDatabaseMahasiswa(Mahasiswa m){
+        connection.deleteMahasiswa(m);
+    }
+    
+    public void hapusDatabaseMatakuliah(Matakuliah mk){
+        connection.deleteMatakuliah(mk);
+    }
+    
+    public void hapusDatabaseKelas(Kelas k){
+        connection.deleteKelas(k);
+    }
+    
+    public void hapusDatabaseSetKelas(Kelas k){
+        connection.deleteSetKelas(k);
+    }
+    
+    public void editDatabaseKelasMahasiswa(Kelas k,int a){
+        connection.update_setkelas(k, a);
+    }
 }

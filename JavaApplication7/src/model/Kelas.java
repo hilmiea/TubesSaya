@@ -13,7 +13,25 @@ public class Kelas{
  	private Matakuliah matakuliah;
  	private Dosen dosen;
  	private String namakelas;
- 	
+        private int id;
+        private int idset;
+
+    public int getIdset() {
+        return idset;
+    }
+
+    public void setIdset(int idset) {
+        this.idset = idset;
+    }       
+        
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+             
         public Kelas(String namakelas) {
  		this.namakelas=namakelas;
  	}

@@ -20,6 +20,7 @@ public class ViewMahasiswa extends javax.swing.JFrame {
      */
     public ViewMahasiswa() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -40,23 +41,24 @@ public class ViewMahasiswa extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Registrasi Mata Kuliah");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setText("REGISTRASI MATA KULIAH");
 
+        tableregistrasi.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tableregistrasi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "Kelas", "Mata Kuliah", "Dosen"
+                "Kelas", "Mata Kuliah"
             }
         ));
         jScrollPane1.setViewportView(tableregistrasi);
 
+        registrasi.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         registrasi.setText("Resigtrasi");
 
+        keluar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         keluar.setText("Keluar");
         keluar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,6 +66,7 @@ public class ViewMahasiswa extends javax.swing.JFrame {
             }
         });
 
+        lihatmatakuliah.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lihatmatakuliah.setText("Lihat Mata Kuliah yang Di ambil");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -71,33 +74,34 @@ public class ViewMahasiswa extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
-                    .addComponent(lihatmatakuliah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(registrasi)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(keluar)))
-                .addContainerGap())
+                        .addGap(248, 248, 248)
+                        .addComponent(keluar))
+                    .addComponent(registrasi)
+                    .addComponent(lihatmatakuliah, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel1))
                     .addComponent(keluar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGap(6, 6, 6)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(11, 11, 11)
                 .addComponent(registrasi)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(6, 6, 6)
                 .addComponent(lihatmatakuliah)
-                .addGap(52, 52, 52))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();

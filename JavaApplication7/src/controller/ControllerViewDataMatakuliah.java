@@ -30,7 +30,7 @@ public class ControllerViewDataMatakuliah implements ActionListener {
         this.daftarMatakuliah = model.getDaftarMatakuliah();
         DefaultTableModel tmodel = (DefaultTableModel) view.getjTable1().getModel();
         for(Matakuliah mk : daftarMatakuliah){
-            Object[] row = {mk.getNamaMatkul(),mk.getSks()};
+            Object[] row = {mk.getKodematkul(),mk.getNamaMatkul(),mk.getSks()};
             tmodel.addRow(row);
         }
     }

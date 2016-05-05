@@ -8,6 +8,7 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Aplikasi;
 import model.Kelas;
@@ -20,6 +21,7 @@ import view.ViewDataSetKelas;
 public class ControllerViewDataSetKelas implements ActionListener{
     private Aplikasi model;
     private ViewDataSetKelas view;
+    private Kelas k;
     ArrayList<Kelas> daftarSetKelas;
 
     public ControllerViewDataSetKelas(Aplikasi model) {
@@ -41,6 +43,15 @@ public class ControllerViewDataSetKelas implements ActionListener{
         if(o.equals(view.getKeluardatasetkelas())){
             new ControllerViewKelolaKelas(model);
             view.dispose();
+        }
+        else if (o.equals(view.getHapussetkelas())){
+            DefaultTableModel tmodel = (DefaultTableModel) view.getjTable1().getModel();
+            String id = view.getjTable1().getModel().getValueAt(view.getjTable1().getSelectedRow(), 0).toString();
+            k = model.getDaftarSetKelas(id);
+            model.hapusKelasMatkulDosen(k);
+            model.hapusDatabaseSetKelas(k);
+            tmodel.removeRow(view.getjTable1().getSelectedRow());
+            JOptionPane.showMessageDialog(view, "Berhasil menghapus set kelas");
         }
     }
     

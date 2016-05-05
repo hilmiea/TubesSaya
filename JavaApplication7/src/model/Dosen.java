@@ -10,23 +10,23 @@ package model;
  * @author daraswatizakiah
  */
 public class Dosen extends Orang{
-    private String nip;
+    private int nip;
 
-    public Dosen(String nama, String kelamin, String nip){
+    public Dosen(String nama, String kelamin, int nip){
         super(nama,kelamin);
         this.nip=nip;
     }
     public String getNama(){
         return super.getNama();
     }
-    public String getNip(){
+    public int getNip(){
         return nip;
     }
     public String getKelamin(){
         return super.getKelamin();
     }
 
-    public void setNip(String nip) {
+    public void setNip(int nip) {
         this.nip = nip;
     }
     

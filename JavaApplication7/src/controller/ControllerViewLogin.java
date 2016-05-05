@@ -5,6 +5,7 @@
  */
 package controller;
 
+import database.Database;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -20,41 +21,47 @@ public class ControllerViewLogin implements ActionListener{
     private Aplikasi model;
     private ViewLogin view;
     private Mahasiswa m;
+    Database connection;
     
     public ControllerViewLogin(Aplikasi model) {
         this.model = model;
         view = new ViewLogin();
         view.addActionListener(this);
         view.setVisible(true);
+        connection = new Database();
+        connection.connect();
     }
 
-        
+
     @Override
     public void actionPerformed(ActionEvent ae) {
         Object o = ae.getSource();
-        if (o.equals(view.getLogin())){
-            m = model.getMahasiswa(view.getUsername().getText());
-            if((view.getUsername().getText().equals("admin")) && (view.getPassword().getText().equals("admin"))){
-                JOptionPane.showMessageDialog(view, "Selamat Datang Admin");
+        if (view.getUsername().getText().equals("")){
+            JOptionPane.showMessageDialog(view, "Username/Password tidak boleh kosong");
+        }
+        else if (view.getPassword().getText().equals("")){
+            JOptionPane.showMessageDialog(view, "Username/Password tidak boleh kosong");
+        }
+        else if (o.equals(view.getLogin())){
+            if((view.getUsername().getText().equals("admin")) && (view.getPassword().getText().equals("admin"))){             
                 new ControllerViewAdmin(model);
                 view.dispose();
+                JOptionPane.showMessageDialog(view, "Selamat Datang Admin");
             }
-            else if(m != null){
-                if ((view.getUsername().getText().equals(m.getNim())) && (view.getPassword().getText().equals(m.getNim()))){
-                    JOptionPane.showMessageDialog(view, "Selamat Datang "+m.getNama());
+            else if((view.getUsername().getText() != "admin") && (view.getPassword().getText() != "admin")){
+                m = connection.authm(view.getUsername().getText(), view.getPassword().getText());
+                if(m != null){
+                    model.setA(Integer.parseInt(view.getUsername().getText()));
                     new ControllerViewMahasiswa(model);
-                    view.dispose();
+                    view.dispose();                                  
+                    JOptionPane.showMessageDialog(view, "Selamat Datang");
                 }
                 else{
                     view.getUsername().setText("");
                     view.getPassword().setText("");
-                    JOptionPane.showMessageDialog(view, "Username/Password salah");
+                    JOptionPane.showMessageDialog(view,"Username/Password tidak ada");
                 }
-            }
-            else if(o.equals(view.getKeluarlogin())){
-                JOptionPane.showMessageDialog(view, "Keluar Program");
-                System.exit(1);
-            }
+            }  
             else{
                 view.getUsername().setText("");
                 view.getPassword().setText("");

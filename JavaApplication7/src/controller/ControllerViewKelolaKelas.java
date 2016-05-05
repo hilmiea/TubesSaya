@@ -5,10 +5,12 @@
  */
 package controller;
 
+import database.Database;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import model.Aplikasi;
 import model.Dosen;
 import model.Kelas;
@@ -22,15 +24,46 @@ import view.ViewKelolaKelas;
 public class ControllerViewKelolaKelas implements ActionListener{
     private Aplikasi model;
     private ViewKelolaKelas view;
-    private Kelas k;
-    private Matakuliah mk;
-    private Dosen d;
+    private Kelas k,k1,k2,k3;
+    private Matakuliah mk,mk1;
+    private Dosen d,d1;
+    Database connection;
+    ArrayList<Dosen> daftarDosen;
+    ArrayList<Matakuliah> daftarMatakuliah;
+    ArrayList<Kelas> daftarKelas;
+    
     
     public ControllerViewKelolaKelas(Aplikasi model) {
         this.model = model;
         view = new ViewKelolaKelas();
         view.addActionListener(this);
         view.setVisible(true);
+        connection = new Database();
+        connection.connect();
+        model.setDaftarKelas(connection.loadAllKelas());
+        model.setDaftarDosen(connection.loadAllDosen());
+        model.setDaftarMatakuliah(connection.loadAllMatkul());      
+        model.setDaftarKelasMatkulDosen(connection.loadAllSetKelas(model));
+        this.daftarDosen = model.getDaftarDosen();
+        DefaultTableModel tmodel = (DefaultTableModel) view.getTabledosen().getModel();
+        for(Dosen d : daftarDosen){
+            Object[] row = {d.getNip(),d.getNama()};
+            tmodel.addRow(row);
+        }
+        
+        this.daftarMatakuliah = model.getDaftarMatakuliah();
+        DefaultTableModel tmodel1 = (DefaultTableModel) view.getTablematkul().getModel();
+        for(Matakuliah mk : daftarMatakuliah){
+            Object[] row = {mk.getKodematkul(),mk.getNamaMatkul()};
+            tmodel1.addRow(row);
+        }
+        
+        this.daftarKelas= model.getDaftarKelas();
+        DefaultTableModel tmodel2 = (DefaultTableModel) view.getTablekelas().getModel();
+        for(Kelas k : daftarKelas){
+            Object[] row = {k.getNamaKelas()};
+            tmodel2.addRow(row);
+        }
     }
 
     @Override
@@ -41,20 +74,40 @@ public class ControllerViewKelolaKelas implements ActionListener{
             view.dispose();
         }
         else if(o.equals(view.getTambahsimpan())){
-            k = new Kelas(view.getTambahkelas().getText());
-            model.tambahKelas(k);
-            view.getTambahkelas().setText("");
-            JOptionPane.showMessageDialog(view, "Kelas berhasil disimpan");
+            if (view.getTambahkelas().getText().equals("")){
+                JOptionPane.showMessageDialog(view, "Ada data kosong");
+            }
+            else{
+            k = model.getKelas(view.getTambahkelas().getText());
+            if(k == null){
+                k = new Kelas(view.getTambahkelas().getText());
+                model.tambahKelas(k);
+                view.getTambahkelas().setText("");
+                JOptionPane.showMessageDialog(view, "Kelas berhasil disimpan");
+            }else{
+                view.getTambahkelas().setText("");
+                JOptionPane.showMessageDialog(view, "Kelas sudah ada");
+            }
+            }
             }
         else if(o.equals(view.getEditsimpan())){
+            if (view.getEditnama().getText().equals("")){
+               JOptionPane.showMessageDialog(view, "Ada data kosong"); 
+            }
+            else if (view.getEditnamabaru().getText().equals("")){
+               JOptionPane.showMessageDialog(view, "Ada data kosong"); 
+            }
+            else{
             k= model.getKelas(view.getEditnama().getText());
             if(k != null){
                 k.setNamakelas(view.getEditnamabaru().getText());
                 model.editKelas(k);
+                model.editKelasDatabase(k);
                 k = model.getDaftarSetKelas(view.getEditnama().getText());
                 if (k != null){
                     k.setNamakelas(view.getEditnamabaru().getText());
-                }
+                    System.out.println(k.getIdset());
+                }               
                 k = model.getKelasMatkulMahasiswa(view.getEditnama().getText());
                 if (k != null){
                     k.setNamakelas(view.getEditnamabaru().getText());
@@ -69,7 +122,12 @@ public class ControllerViewKelolaKelas implements ActionListener{
                 JOptionPane.showMessageDialog(view, "Kelas tidak terdeteksi");
             }
         }
+        }
         else if(o.equals(view.getEditcari())){
+            if (view.getEditnama().getText().equals("")){
+                JOptionPane.showMessageDialog(view, "Ada data kosong");
+            }
+            else{
             k= model.getKelas(view.getEditnama().getText());
             if(k != null){
                 view.getEditnamabaru().setText(k.getNamaKelas());
@@ -80,11 +138,25 @@ public class ControllerViewKelolaKelas implements ActionListener{
                 view.getEditnamabaru().setText("");
                 JOptionPane.showMessageDialog(view, "Kelas tidak terdeteksi");
             }
+            }
         }
         else if(o.equals(view.getHapushapus())){
+            if (view.getHapusnama().getText().equals("")){
+                JOptionPane.showMessageDialog(view, "Ada data kosong");
+            }
+            else{
             k = model.getKelas(view.getHapusnama().getText());
             if(k != null){
                 model.hapusKelas(k);
+                model.hapusDatabaseKelas(k);
+                k = model.getDaftarSetKelas(view.getHapusnama().getText());
+                if (k != null){
+                    model.hapusKelasMatkulDosen(k);
+                }
+                k = model.getKelasMatkulMahasiswa(view.getHapusnama().getText());
+                if (k != null){
+                    model.hapusMahasiswaMatkulKelas(k);
+                }
                 view.getHapusnama().setText("");
                 JOptionPane.showMessageDialog(view, "Kelas berhasil dihapus");
             }
@@ -92,7 +164,7 @@ public class ControllerViewKelolaKelas implements ActionListener{
                view.getHapusnama().setText("");
                JOptionPane.showMessageDialog(view, "Kelas tidak terdeteksi"); 
             }
-            
+            } 
         }
         else if(o.equals(view.getLihatdatakelas())){
             new ControllerViewDataKelas(model);
@@ -112,13 +184,23 @@ public class ControllerViewKelolaKelas implements ActionListener{
             JOptionPane.showMessageDialog(view, "Batal menghapus kelas");
         }
         else if(o.equals(view.getSetsimpan())){
+            if (view.getSetdosen().getText().equals("")){
+                JOptionPane.showMessageDialog(view, "Ada data kosong");
+            }
+            else if (view.getSetmatkul().getText().equals("")){
+                JOptionPane.showMessageDialog(view, "Ada data kosong");
+            }
+            else if (view.getSetnama().getText().equals("")){
+                JOptionPane.showMessageDialog(view, "Ada data kosong");
+            }
+            else{
             k = model.getKelas(view.getSetnama().getText());
             mk = model.getMatakuliah(view.getSetmatkul().getText());
-            d = model.getDosen(view.getSetdosen().getText());
-            System.out.println(k.getNamaKelas());
-            System.out.println(mk.getNamaMatkul());
-            System.out.println(d.getNama());
-            if((k != null) && (mk != null) && (d != null)){
+            d = model.getDosen(Integer.parseInt(view.getSetdosen().getText()));
+            k1 = model.getDaftarSetKelas(view.getSetnama().getText());
+            k2 = model.getDaftarSetMatkul(view.getSetmatkul().getText());
+            k3 = model.getDaftarSetDosen(Integer.parseInt(view.getSetdosen().getText()));
+            if((k != null) && (mk != null) && (d != null) && (k1 == null) && (k2 == null) && (k3 == null)){
                 k.setDosenMatkul(d,mk);
                 view.getSetnama().setText("");
                 view.getSetdosen().setText("");
@@ -127,8 +209,12 @@ public class ControllerViewKelolaKelas implements ActionListener{
                 JOptionPane.showMessageDialog(view, "Berhasil set kelas");
             }
             else{
-                JOptionPane.showMessageDialog(view, "Kelas/Dosen/Matkul tidak ada");
+                view.getSetnama().setText("");
+                view.getSetdosen().setText("");
+                view.getSetmatkul().setText("");
+                JOptionPane.showMessageDialog(view, "Data tidak ada atau data sudah di input");
             }
+        }
         }
         else if(o.equals(view.getSetbatal())){
                 view.getSetnama().setText("");

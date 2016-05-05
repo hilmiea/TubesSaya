@@ -20,6 +20,7 @@ public class ViewDataKelas extends javax.swing.JFrame {
      */
     public ViewDataKelas() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -38,14 +39,13 @@ public class ViewDataKelas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Data Kelas");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setText("DATA KELAS");
 
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+
             },
             new String [] {
                 "Nama Kelas"
@@ -61,7 +61,8 @@ public class ViewDataKelas extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        keluardatakelas.setText("Keluar");
+        keluardatakelas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        keluardatakelas.setText("Kembali");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

@@ -20,6 +20,7 @@ public class ViewDataMatakuliahMahasiswa extends javax.swing.JFrame {
      */
     public ViewDataMatakuliahMahasiswa() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -35,17 +36,17 @@ public class ViewDataMatakuliahMahasiswa extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         keluarmatkulyangdiambil = new javax.swing.JButton();
+        hapusmatakuliah = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Mata Kuliah yang di Ambil mahasiswa");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setText("MATA KULIAH YANG DI AMBIL");
 
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Kelas", "Mata Kuliah"
@@ -53,7 +54,11 @@ public class ViewDataMatakuliahMahasiswa extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        keluarmatkulyangdiambil.setText("Keluar");
+        keluarmatkulyangdiambil.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        keluarmatkulyangdiambil.setText("Kembali");
+
+        hapusmatakuliah.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        hapusmatakuliah.setText("Hapus Mata Kuliah");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -61,13 +66,15 @@ public class ViewDataMatakuliahMahasiswa extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(keluarmatkulyangdiambil))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(keluarmatkulyangdiambil))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(hapusmatakuliah))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -78,7 +85,9 @@ public class ViewDataMatakuliahMahasiswa extends javax.swing.JFrame {
                     .addComponent(keluarmatkulyangdiambil))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(hapusmatakuliah)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -103,12 +112,24 @@ public class ViewDataMatakuliahMahasiswa extends javax.swing.JFrame {
     public void setKeluarmatkulyangdiambil(JButton keluarmatkulyangdiambil) {
         this.keluarmatkulyangdiambil = keluarmatkulyangdiambil;
     }
+
+    public JButton getHapusmatakuliah() {
+        return hapusmatakuliah;
+    }
+
+    public void setHapusmatakuliah(JButton hapusmatakuliah) {
+        this.hapusmatakuliah = hapusmatakuliah;
+    }
+    
+    
     
     public void addActionListener(ActionListener ae){
         keluarmatkulyangdiambil.addActionListener(ae);
+        hapusmatakuliah.addActionListener(ae);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton hapusmatakuliah;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

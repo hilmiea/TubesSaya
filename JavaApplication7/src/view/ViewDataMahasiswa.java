@@ -20,6 +20,7 @@ public class ViewDataMahasiswa extends javax.swing.JFrame {
      */
     public ViewDataMahasiswa() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -38,21 +39,20 @@ public class ViewDataMahasiswa extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Data Mahasiswa");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setText("DATA MAHASISWA");
 
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "NIM", "Nama", "Jenis Kelamin"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -61,7 +61,8 @@ public class ViewDataMahasiswa extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        keluardatamahasiswa.setText("Keluar");
+        keluardatamahasiswa.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        keluardatamahasiswa.setText("Kembali");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

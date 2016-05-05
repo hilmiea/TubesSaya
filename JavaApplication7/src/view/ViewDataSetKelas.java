@@ -20,6 +20,7 @@ public class ViewDataSetKelas extends javax.swing.JFrame {
      */
     public ViewDataSetKelas() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -35,17 +36,17 @@ public class ViewDataSetKelas extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         keluardatasetkelas = new javax.swing.JButton();
+        hapussetkelas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Data Set Kelas");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setText("DATA SET KELAS ");
 
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Kelas", "Mata Kuliah", "Dosen"
@@ -53,7 +54,10 @@ public class ViewDataSetKelas extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        keluardatasetkelas.setText("Keluar");
+        keluardatasetkelas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        keluardatasetkelas.setText("Kembali");
+
+        hapussetkelas.setText("Hapus Set Kelas");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -61,13 +65,15 @@ public class ViewDataSetKelas extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(keluardatasetkelas))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(keluardatasetkelas))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(hapussetkelas))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -76,18 +82,30 @@ public class ViewDataSetKelas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(keluardatasetkelas))
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(hapussetkelas)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public JButton getHapussetkelas() {
+        return hapussetkelas;
+    }
+
+    public void setHapussetkelas(JButton hapussetkelas) {
+        this.hapussetkelas = hapussetkelas;
+    }
+
     /**
      * @param args the command line arguments
      */
 
+    
+    
     public JTable getjTable1() {
         return jTable1;
     }
@@ -106,10 +124,12 @@ public class ViewDataSetKelas extends javax.swing.JFrame {
     
     public void addActionListener(ActionListener ae){
         keluardatasetkelas.addActionListener(ae);
+        hapussetkelas.addActionListener(ae);
     }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton hapussetkelas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
